@@ -5,15 +5,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
+    <title>Les petits plats</title>
   </head>
   <body>
-    <h1 class="bg-primary">Bonjour à tous</h1>
+    <header class="py-4">
+      <div class="container">
+        <nav class="nav flex-column align-items-center">
+          <a class="nav-link pb-0" href="#">
+            <img src="./img/logo.png" alt="" />
+          </a>
+          <a class="nav-link pt-0" href="#">Les petits plats</a>
+          <div class="input-group mb-3">
+            <input
+              id="search"
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="basic-addon1"
+            />
+            <label for="search">
+              <img src="./img/search.png" alt="" />
+            </label>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="container px-0">
+      <section id="sorting">
+        <div class="container">
+          <p>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseIngredients"
+              aria-expanded="false"
+              aria-controls="collapseIngredients"
+            >
+              <!-- <img src="./img/time-icon.png" alt=""> -->
+              Ingrédients
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseAppareils"
+              aria-expanded="false"
+              aria-controls="collapseAppareils"
+            >
+              Appareils
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseUstensiles"
+              aria-expanded="false"
+              aria-controls="collapseUstensiles"
+            >
+              Ustensiles
+            </button>
+          </p>
+          <div class="collapse" id="collapseIngredients">
+            <div class="card card-body">Liste des ingrédients</div>
+          </div>
+          <div class="collapse" id="collapseAppareils">
+            <div class="card card-body">Liste des appareils</div>
+          </div>
+          <div class="collapse" id="collapseUstensiles">
+            <div class="card card-body">Liste des ustensiles</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARDS -->
+
+      <section id="cards">
+        <div class="container">
+          <div class="results row gy-4 gy-md-0 mt-4"></div>
+        </div>
+      </section>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="./Js/script.js"></script>
   </body>
 </html>

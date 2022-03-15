@@ -100,7 +100,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  line-height: 1.2;
 }
 
 h1, .h1 {
@@ -5113,7 +5112,7 @@ fieldset:disabled .btn {
           flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #e7e7e7;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -5196,6 +5195,11 @@ fieldset:disabled .btn {
   margin-bottom: -0.5rem;
   margin-left: -0.5rem;
   border-bottom: 0;
+}
+
+.card-header-tabs .nav-link.active {
+  background-color: #e7e7e7;
+  border-bottom-color: #e7e7e7;
 }
 
 .card-header-pills {
@@ -5796,11 +5800,11 @@ fieldset:disabled .btn {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0 0;
   color: #212529;
   text-decoration: none;
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: #e7e7e7;
+  border: 0 solid rgba(0, 0, 0, 0.125);
 }
 
 .list-group-item:first-child {
@@ -5816,7 +5820,7 @@ fieldset:disabled .btn {
 .list-group-item.disabled, .list-group-item:disabled {
   color: #6c757d;
   pointer-events: none;
-  background-color: #fff;
+  background-color: #e7e7e7;
 }
 
 .list-group-item.active {
@@ -5831,8 +5835,8 @@ fieldset:disabled .btn {
 }
 
 .list-group-item + .list-group-item.active {
-  margin-top: -1px;
-  border-top-width: 1px;
+  margin-top: 0;
+  border-top-width: 0;
 }
 
 .list-group-horizontal {
@@ -5857,13 +5861,13 @@ fieldset:disabled .btn {
 }
 
 .list-group-horizontal > .list-group-item + .list-group-item {
-  border-top-width: 1px;
+  border-top-width: 0;
   border-left-width: 0;
 }
 
 .list-group-horizontal > .list-group-item + .list-group-item.active {
-  margin-left: -1px;
-  border-left-width: 1px;
+  margin-left: 0;
+  border-left-width: 0;
 }
 
 @media (min-width: 576px) {
@@ -5885,12 +5889,12 @@ fieldset:disabled .btn {
     margin-top: 0;
   }
   .list-group-horizontal-sm > .list-group-item + .list-group-item {
-    border-top-width: 1px;
+    border-top-width: 0;
     border-left-width: 0;
   }
   .list-group-horizontal-sm > .list-group-item + .list-group-item.active {
-    margin-left: -1px;
-    border-left-width: 1px;
+    margin-left: 0;
+    border-left-width: 0;
   }
 }
 
@@ -5913,12 +5917,12 @@ fieldset:disabled .btn {
     margin-top: 0;
   }
   .list-group-horizontal-md > .list-group-item + .list-group-item {
-    border-top-width: 1px;
+    border-top-width: 0;
     border-left-width: 0;
   }
   .list-group-horizontal-md > .list-group-item + .list-group-item.active {
-    margin-left: -1px;
-    border-left-width: 1px;
+    margin-left: 0;
+    border-left-width: 0;
   }
 }
 
@@ -5941,12 +5945,12 @@ fieldset:disabled .btn {
     margin-top: 0;
   }
   .list-group-horizontal-lg > .list-group-item + .list-group-item {
-    border-top-width: 1px;
+    border-top-width: 0;
     border-left-width: 0;
   }
   .list-group-horizontal-lg > .list-group-item + .list-group-item.active {
-    margin-left: -1px;
-    border-left-width: 1px;
+    margin-left: 0;
+    border-left-width: 0;
   }
 }
 
@@ -5969,12 +5973,12 @@ fieldset:disabled .btn {
     margin-top: 0;
   }
   .list-group-horizontal-xl > .list-group-item + .list-group-item {
-    border-top-width: 1px;
+    border-top-width: 0;
     border-left-width: 0;
   }
   .list-group-horizontal-xl > .list-group-item + .list-group-item.active {
-    margin-left: -1px;
-    border-left-width: 1px;
+    margin-left: 0;
+    border-left-width: 0;
   }
 }
 
@@ -5997,12 +6001,12 @@ fieldset:disabled .btn {
     margin-top: 0;
   }
   .list-group-horizontal-xxl > .list-group-item + .list-group-item {
-    border-top-width: 1px;
+    border-top-width: 0;
     border-left-width: 0;
   }
   .list-group-horizontal-xxl > .list-group-item + .list-group-item.active {
-    margin-left: -1px;
-    border-left-width: 1px;
+    margin-left: 0;
+    border-left-width: 0;
   }
 }
 
@@ -6011,7 +6015,7 @@ fieldset:disabled .btn {
 }
 
 .list-group-flush > .list-group-item {
-  border-width: 0 0 1px;
+  border-width: 0 0 0;
 }
 
 .list-group-flush > .list-group-item:last-child {
