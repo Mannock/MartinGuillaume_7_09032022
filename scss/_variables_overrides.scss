@@ -7,9 +7,296 @@
 // }
 // $headings-line-height: null;
 
+$primary: #d04f4f;
 $card-bg: #e7e7e7;
 $list-group-bg: #e7e7e7;
-
 $list-group-item-padding-y: 0;
 $list-group-item-padding-x: 0;
 $list-group-border-width: 0;
+
+// ----
+
+$inputSearchBgColor: #e7e7e7;
+$ingredientsBgColor: #3282f7;
+$appareilBgColor: #68d9a4;
+$ustensiltesBgColor: #ed6454;
+$recipeBgColor: #c7bebe;
+
+//Dropdown values
+
+$dropdown-min-width: 40rem;
+$dropdown-color: white;
+$dropdown-bg: #3282f7;
+$dropdown-padding-x: 0.5rem;
+
+.card-body {
+  scrollbar-width: thin;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.card-text {
+  font-family: Roboto;
+  font-size: 12px;
+}
+
+li {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.list-inline-item {
+  font-size: 1.2rem;
+}
+
+.dropdown-menu {
+  background-color: #3282f7;
+  color: white;
+}
+
+.nav-link {
+  color: #d04f4f;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+#datalistIngrédients {
+  color: white;
+  background-color: #3282f7;
+  &::placeholder {
+    color: white;
+  }
+}
+
+option {
+  background-color: #3282f7;
+  color: white;
+}
+
+// -----------------------------------
+
+.menuNav {
+  &--searchInput {
+    width: 100%;
+    background-color: $inputSearchBgColor;
+    height: 70px;
+    border: none;
+    border-radius: 5px;
+    padding: 22px;
+    font-size: 18px;
+    padding-right: 60px;
+
+    &::placeholder {
+      opacity: 40%;
+      font-size: 18px;
+      color: #000;
+    }
+    &_glass {
+      display: block;
+      float: right;
+      position: relative;
+      bottom: 50px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+  }
+  &--buttons-selected-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  &--buttonTagSelected {
+    display: flex;
+    background-color: $ingredientsBgColor;
+    margin: 0;
+    width: auto;
+    height: 37px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    justify-content: space-around;
+    align-items: center;
+    &_ingredientTag {
+      background-color: $ingredientsBgColor;
+    }
+    & p {
+      margin-top: 1rem;
+    }
+    &__crossClose {
+      margin-left: 10px;
+      cursor: pointer;
+      &:hover {
+        transform: rotate(180deg);
+        transition: 600ms;
+      }
+    }
+  }
+}
+
+// -------------------------------------
+
+#dropDownMenus-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 15px;
+  align-items: flex-start;
+  // position: absolute;
+  z-index: 9;
+}
+
+.dropDownMenus {
+  display: inline;
+
+  &--input {
+    border-style: none;
+    display: inline-block;
+    border-radius: 5px;
+    color: #fff;
+    z-index: 99;
+    font-size: 18px;
+    cursor: pointer;
+    // padding-left: 20px;
+
+    &::placeholder {
+      color: #fff;
+      padding-left: 20px;
+      // padding-left: 20px;
+    }
+
+    &_ingredients {
+      background-color: $ingredientsBgColor;
+      border-color: $ingredientsBgColor;
+      height: 70px;
+    }
+    &_appareil {
+      background-color: $appareilBgColor;
+      border-color: $appareilBgColor;
+      height: 70px;
+    }
+    &_ustensiles {
+      background-color: $ustensiltesBgColor;
+      border-color: $ustensiltesBgColor;
+      height: 70px;
+    }
+
+    &_active {
+      display: none;
+      margin-right: 15px;
+      min-width: 250px;
+      max-width: 70%;
+      padding: 20px 2px;
+      border-radius: 5px;
+      &_title {
+        border-width: 0;
+        width: 90%;
+        background-color: transparent;
+        font-size: 18px;
+        color: #fff;
+        outline-width: 0;
+        padding-left: 20px;
+
+        &::placeholder {
+          color: #fff;
+          opacity: 50%;
+        }
+      }
+      &_chevron {
+        color: #fff;
+        display: block;
+        position: relative;
+        float: right;
+        right: 25px;
+        top: 5px;
+        cursor: pointer;
+      }
+      &_list {
+        display: flex;
+        margin-left: 20px;
+        // flex-flow: column wrap;
+        flex-wrap: wrap;
+        gap: 5px 10px;
+        list-style-type: none;
+        padding-left: 0;
+        color: #fff;
+        z-index: 999;
+        li {
+          width: 180px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: clip;
+          text-overflow: ellipsis;
+          text-overflow: "...";
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.2) translate(5px);
+            transition: 200ms;
+            overflow: unset;
+            white-space: unset;
+            text-overflow: unset;
+            text-overflow: unset;
+          }
+          &:focus {
+            // outline-style: dashed;
+            // outline-color: white;
+            overflow: unset;
+            white-space: unset;
+            text-overflow: unset;
+            text-overflow: unset;
+          }
+        }
+        &_ing {
+          // max-height: 400px;
+          width: 100%;
+        }
+        // &_appliance {
+        //   // max-height: 100px;
+        //   // width: 100%;
+        // }
+        // &_ustensils {
+        //   // max-height: 270px;
+        // }
+      }
+      &_ingredient {
+        background-color: $ingredientsBgColor;
+        max-width: 800px;
+      }
+      &_appliance {
+        background-color: $appareilBgColor;
+        max-width: 400px;
+      }
+      &_ustensils {
+        background-color: $ustensiltesBgColor;
+        max-width: 400px;
+      }
+    }
+  }
+  &--chevronDown {
+    color: #fff;
+    z-index: 9;
+    position: relative;
+    display: block;
+    float: right;
+    right: 40px;
+    margin-right: -8px;
+    top: 30px;
+    cursor: pointer;
+    height: 20px;
+  }
+}
+
+.end-message {
+  padding-right: 20px;
+}
+//Changement de propriété pour JS
+#container-1_inactive {
+  display: block;
+  // display: none;
+}
+
+#container-1_active {
+  display: none;
+}

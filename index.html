@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Les petits plats</title>
   </head>
@@ -31,9 +43,227 @@
         </nav>
       </div>
     </header>
+
     <div class="container px-0">
-      <section id="sorting">
-        <div class="container">
+      <div class="menuNav--buttons-selected-container">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container px-0">
+      <!-- <div class="sorting-menus"> -->
+      <div id="dropDownMenus-container">
+        <div class="dropDownMenus-container dropDownMenus-container_1">
+          <div
+            id="container-1_inactive"
+            class="dropDownMenus-container_inactive"
+          >
+            <input
+              type="text"
+              class="dropDownMenus--input dropDownMenus--input_ingredients"
+              placeholder="Ingrédients"
+            />
+            <i
+              id="chevron-down-ingredient"
+              class="dropDownMenus--chevronDown fas fa-chevron-down"
+            ></i>
+          </div>
+
+          <div
+            id="container-1_active"
+            class="
+              dropDownMenus--input_active dropDownMenus--input_active_ingredient
+            "
+          >
+            <input
+              type="search"
+              id="ingredients-input"
+              class="dropDownMenus--input_active_title"
+              placeholder="Rechercher un ingrédient"
+            /><i
+              id="chevron-up-ingredient"
+              class="dropDownMenus--input_active_chevron fas fa-chevron-up"
+            ></i>
+            <ul
+              class="
+                dropDownMenus--input_active_list
+                dropDownMenus--input_active_list_ing
+              "
+              id="dropdown-ingredients"
+            >
+              <!-- Incrémentation <li> en JS -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="dropDownMenus-container dropDownMenus-container_2">
+          <div id="container-2_inactive">
+            <input
+              type="text"
+              id="appareil-input"
+              class="
+                dropDownMenus dropDownMenus--input dropDownMenus--input_appareil
+              "
+              placeholder="Appareils"
+            />
+            <i
+              class="
+                dropDownMenus--chevronDown dropDownMenus--chevronDown_appareil
+                fas
+                fa-chevron-down
+                inactive
+              "
+            ></i>
+          </div>
+
+          <div
+            id="container-2_active"
+            class="
+              dropDownMenus--input_active dropDownMenus--input_active_appliance
+            "
+          >
+            <input
+              type="search"
+              class="dropDownMenus--input_active_title"
+              placeholder="Rechercher un appareil"
+            /><i
+              id="chevron-up-appliance"
+              class="dropDownMenus--input_active_chevron fas fa-chevron-up"
+            ></i>
+            <ul
+              class="
+                dropDownMenus--input_active_list
+                dropDownMenus--input_active_list_appliance
+              "
+              id="dropdown-appliances"
+            >
+              <!-- Incrémentation <li> en JS -->
+            </ul>
+            <!-- <span id="error-message2" class="hidden"
+              >Il n'y a plus aucun ingrédient selectionnable</span
+            > -->
+          </div>
+        </div>
+
+        <div class="dropDownMenus-container dropDownMenus-container_3">
+          <div id="container-3_inactive">
+            <input
+              type="text"
+              id="ustensiles-input"
+              class="
+                dropDownMenus
+                dropDownMenus--input
+                dropDownMenus--input_ustensiles
+              "
+              placeholder="Ustensiles"
+            />
+            <i
+              class="
+                dropDownMenus--chevronDown dropDownMenus--chevronDown_appareil
+                fas
+                fa-chevron-down
+              "
+            ></i>
+          </div>
+
+          <div
+            id="container-3_active"
+            class="
+              dropDownMenus--input_active dropDownMenus--input_active_ustensils
+            "
+          >
+            <input
+              type="search"
+              class="dropDownMenus--input_active_title"
+              placeholder="Rechercher un ustensile"
+            /><i
+              id="chevron-up-ustensils"
+              class="dropDownMenus--input_active_chevron fas fa-chevron-up"
+            ></i>
+            <ul
+              class="
+                dropDownMenus--input_active_list
+                dropDownMenus--input_active_list_ustensils
+              "
+              id="dropdown-ustensils"
+            >
+              <!-- Incrémentation <li> en JS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- <section id="sorting">
+        <div class="row justify-content-start">
+          <div class="col">
+            <div class="dropdown">
+              <button
+                class="btn btn-lg btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownIngredients"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Ingrédients
+              </button>
+              <div
+                class="dropdown-ingredients dropdown-menu"
+                aria-labelledby="dropdownIngredients"
+              >
+                <ul class="list-inline" id="dropdown-ingredients"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="dropdown">
+              <button
+                class="btn btn-lg btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownAppliances"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Appareils
+              </button>
+              <div
+                class="dropdown-appareils dropdown-menu"
+                aria-labelledby="dropdownAppliances"
+              >
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a>An item</a></li>
+                  <li class="list-inline-item"><a>An item</a></li>
+                  <li class="list-inline-item"><a>An item</a></li>
+                  <li class="list-inline-item"><a>An item</a></li>
+                  <li class="list-inline-item"><a>An item</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="dropdown">
+              <button
+                class="btn btn-lg btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownUstensils"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Ustensiles
+              </button>
+              <div
+                class="dropdown-ustensils dropdown-menu"
+                aria-labelledby="dropdownUstensils"
+              >
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil
+                reiciendis ab necessitatibus quibusdam provident rerum!
+              </div>
+            </div>
+          </div>
+        </div> -->
+      <!-- <div class="container">
           <p>
             <button
               type="button"
@@ -43,7 +273,6 @@
               aria-expanded="false"
               aria-controls="collapseIngredients"
             >
-              <!-- <img src="./img/time-icon.png" alt=""> -->
               Ingrédients
             </button>
             <button
@@ -76,14 +305,19 @@
           <div class="collapse" id="collapseUstensiles">
             <div class="card card-body">Liste des ustensiles</div>
           </div>
-        </div>
-      </section>
+        </div> -->
+      <!-- </section> -->
 
       <!-- CARDS -->
-
+    </div>
+    <div class="container px-0">
       <section id="cards">
-        <div class="container">
-          <div class="results row gy-4 gy-md-0 mt-4"></div>
+        <div class="container px-0">
+          <div id="recipeContainer" class="results row gy-4 gy-md-0 mt-4">
+            <div
+              class="cardItem col-xs-12 col-sm-12 col-md-6 col-lg-4 mb-5"
+            ></div>
+          </div>
         </div>
       </section>
     </div>
