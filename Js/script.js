@@ -4,6 +4,8 @@ import { Recipe } from "./Recipe.js";
 
 //Fetch json
 // /créer class receipt et afficher la classe
+// let selectedAppliances = [];
+let result = [];
 
 const recipeList = await fetchRecipes();
 const ingredientDrop = document.getElementsByClassName("dropdown-ingredients");
@@ -56,8 +58,8 @@ function displayRecipe(data) {
 
 // displayRecipe(allRecipes);
 
-console.log(allRecipes instanceof Recipe);
-console.log(allRecipes[0] instanceof Recipe);
+// console.log(allRecipes instanceof Recipe);
+// console.log(allRecipes[0] instanceof Recipe);
 
 // function ingredients(data) {
 //   data.forEach((el) => {
@@ -85,37 +87,37 @@ function getAllItems() {
 getAllItems();
 
 let uniqueIngredients = [...new Set(ingredientsList)];
-console.log(uniqueIngredients);
+// console.log(uniqueIngredients);
 let uniqueAppliances = [...new Set(appliancesList)];
 let uniqueUstensils = [...new Set(ustensilsList)];
-console.log(uniqueAppliances);
-console.log(uniqueUstensils);
+// console.log(uniqueAppliances);
+// console.log(uniqueUstensils);
+
+// function addIngredientsList2(array) {
+//   // console.log(uniqueIngredients);
+//   let dropdown = document.getElementById("dropdown-ingredients");
+//   array.forEach((ingredient) => {
+//     dropdown.innerHTML += `
+//     <li class="name-of-item " tabindex="0">${ingredient}</li>
+//     `;
+//   });
+// }
 
 function addIngredientsList() {
   // console.log(uniqueIngredients);
   let dropdown = document.getElementById("dropdown-ingredients");
   uniqueIngredients.forEach((ingredient) => {
     dropdown.innerHTML += `
-    <li class="name-of-item" tabindex="0">${ingredient}</li>
+    <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
     `;
   });
 }
-function addIngredientsList2(array) {
-  // console.log(uniqueIngredients);
-  let dropdown = document.getElementById("dropdown-ingredients");
-  array.forEach((ingredient) => {
-    dropdown.innerHTML += `
-    <li class="name-of-item" tabindex="0">${ingredient}</li>
-    `;
-  });
-}
-
 function addAppliancesList() {
   // console.log(uniqueIngredients);
   let dropdown = document.getElementById("dropdown-appliances");
   uniqueAppliances.forEach((appliance) => {
     dropdown.innerHTML += `
-    <li class="name-of-item" tabindex="0">${appliance}</li>
+    <li class="name-of-item appliance" tabindex="0">${appliance}</li>
     `;
   });
 }
@@ -124,7 +126,7 @@ function addUstensilsList() {
   let dropdown = document.getElementById("dropdown-ustensils");
   uniqueUstensils.forEach((ust) => {
     dropdown.innerHTML += `
-    <li class="name-of-item" tabindex="0">${ust}</li>
+    <li class="name-of-item ustensil" tabindex="0">${ust}</li>
     `;
   });
 }
@@ -221,10 +223,11 @@ let combinedArray = [
 
 function addTagsToArray() {
   let arrayOfItems = [...document.querySelectorAll(".name-of-item")];
+  // console.log(arrayOfItems);
   arrayOfItems.forEach((el) => {
     el.addEventListener("click", (e) => {
-      if (!displayTags.includes(el.innerHTML)) {
-        displayTags.push(el.innerHTML);
+      if (!displayTags.some((e) => e.innerHTML === el.innerHTML)) {
+        displayTags.push(el);
         orchestreur();
       }
     });
@@ -236,46 +239,154 @@ function displayTagsAbove() {
     ".menuNav--buttons-selected-container"
   );
 
-  console.log(displayTags);
+  // console.log(displayTags);
   tagsContainer.innerHTML = displayTags
     .map((el) => {
-      return `
-      <button class="menuNav--buttonTagSelected">
-      <p>${el}</p>
-      <img
-      class="menuNav--buttonTagSelected__crossClose"
-      src="./img/cross-close.svg"
-      alt="supprimer le tags"
-      />
-      </button>
-      `;
-      // }
+      // console.log(el.className);
+      if (el.className.includes("ingredient")) {
+        return `
+        <button class="menuNav--buttonTagSelected ingredients">
+        <p>${el.innerHTML}</p>
+        <img
+        class="menuNav--buttonTagSelected__crossClose"
+        src="./img/cross-close.svg"
+        alt="supprimer le tags"
+        />
+        </button>
+        `;
+      } else if (el.className.includes("appliance")) {
+        return `
+        <button class="menuNav--buttonTagSelected appliance">
+        <p>${el.innerHTML}</p>
+        <img
+        class="menuNav--buttonTagSelected__crossClose"
+        src="./img/cross-close.svg"
+        alt="supprimer le tags"
+        />
+        </button>
+        `;
+      } else {
+        return `
+        <button class="menuNav--buttonTagSelected ustensil">
+        <p>${el.innerHTML}</p>
+        <img
+        class="menuNav--buttonTagSelected__crossClose"
+        src="./img/cross-close.svg"
+        alt="supprimer le tags"
+        />
+        </button>
+        `;
+      }
     })
     .join("");
   closeTag();
 }
 
-function firstTri(allRecipes) {
-  let selectedIngredients = [];
+function firstTri(allRecip) {
+  let selectedAppliances = [];
+  // console.log(displayTags);
+  // console.log(allRecip);
+  displayTags.forEach((tag) => {
+    if (tag.className.includes("appliance")) {
+      selectedAppliances.push(tag.innerHTML);
+    }
+  });
+  console.log(selectedAppliances);
+  let result = allRecip.filter((recipe) =>
+    recipe.appliance.includes(selectedAppliances)
+  );
+  console.log(result);
+
+  return result;
+
   //prends les ingrédients sélectionnés
   //filtre le tableau des recettes par rapport aux ingrédients selectionnés
   // return tableau DE RECETTES trié
-  orchestreur();
+  // orchestreur();
 }
 
 function secondTri(untableauderecettes) {
+  let selectedIngredients = [];
+  console.log(displayTags);
+  displayTags.forEach((tag) => {
+    selectedIngredients.push(tag.innerHTML);
+  });
+  console.log(selectedIngredients);
+  // console.log(allRecipes.filter((recipe) => recipe.ingredients));
+
+  // for each RECIPE, filter l'array ingredient??
+  // allRecipes.forEach((recipe) => {
+  // console.log(recipe.ingredients);
+  // });
+
+  let result = allRecipes.filter((recipe) => {
+    recipe.ingredients.forEach((ingredients) => {
+      // console.log(ingredients.ingredient);
+      // console.log(ingredients.ingredient);
+      ingredients.ingredient.includes(selectedIngredients);
+      // selectedIngredients.includes(ingredients.ingredient);
+    });
+  });
+  console.log(result);
+
+  // console.log(
+  //   allRecipes.filter((recipe) => {
+  //     console.log(recipe.ingredients);
+  //     console.log("yes");
+  //     recipe.ingredients.includes(selectedIngredients);
+  //   })
+  // );
   //prends les appareils sélectionnés
   //filtre le tableau des recettes par rapport aux ingrédients selectionnés
   // return tableau trié
 }
 
-function thirdTri(untableauderecettes) {
+function thirdTri(tableautri1) {
+  let selectedUstensils = [];
+  console.log(displayTags);
+  // console.log(allRecip);
+  displayTags.forEach((tag) => {
+    if (tag.className.includes("ustensil")) {
+      selectedUstensils.push(tag.innerHTML);
+    }
+  });
+  console.log(selectedUstensils);
+  if (selectedUstensils.length == 0) {
+    return tableautri1;
+  }
+  //   for (let i=0; i<selectedUstensils.length); i++){
+  //   console.log(selectedUstensils[i]);
+  // };
+
+  let result = tableautri1.filter((recipe) => {
+    // console.log(recipe);
+    const ustensils = recipe.ustensils;
+    let okay = true;
+    selectedUstensils.forEach((ustensil) => {
+      okay = okay && ustensils.includes(ustensil);
+    });
+    return okay;
+  });
+
+  return result;
+
+  // let result = tableautri1.filter((recipe) =>
+  //   recipe.ustensils.includes(selectedUstensils)
+  // );
+  // console.log(result);
+
   //prends les ustensiles sélectionnés
   //filtre le tableau des recettes par rapport aux ustensiles selectionnés
   // return tableau trié
 }
 
 function orchestreur() {
+  const firstTriResult = firstTri(allRecipes);
+  console.log(firstTriResult);
+  const thirdTriResult = thirdTri(firstTriResult);
+
+  // secondTri(firstTriResult);
+  // thirdTri(firstTriResult);
   //1 : 1e tri --> tableau des recettes ingrédients
   // const tri1 = firstTri(allRecipes);
   //2 : 2e tri (à partir du 1e tri) appareils
@@ -284,7 +395,7 @@ function orchestreur() {
   // const tri3 = thirdTri(tri2);
   displayTagsAbove();
   //5: affichage des recettes triées (à partir du 3e tri)
-  displayRecipe(allRecipes);
+  displayRecipe(thirdTriResult);
   //6: affichage des ingrédients à partir du 3e tri
   // addIngredientsList(tri3);
   //6: affichage des appareils   à partir du 3e tri
@@ -304,7 +415,7 @@ function closeTag() {
       // console.log(displayTags);
       // console.log(displayTags[0]);
       for (var i = 0; i < displayTags.length; i++) {
-        if (displayTags[i] === element) {
+        if (displayTags[i].innerHTML === element) {
           displayTags.splice(i, 1);
         }
       }

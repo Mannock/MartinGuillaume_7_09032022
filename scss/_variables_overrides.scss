@@ -18,8 +18,8 @@ $list-group-border-width: 0;
 
 $inputSearchBgColor: #e7e7e7;
 $ingredientsBgColor: #3282f7;
-$appareilBgColor: #68d9a4;
-$ustensiltesBgColor: #ed6454;
+$appliancesBgColor: #68d9a4;
+$ustensilesBgColor: #ed6454;
 $recipeBgColor: #c7bebe;
 
 //Dropdown values
@@ -54,6 +54,16 @@ li {
 .dropdown-menu {
   background-color: #3282f7;
   color: white;
+}
+
+.ingredients {
+  background-color: $ingredientsBgColor;
+}
+.appliance {
+  background-color: $appliancesBgColor;
+}
+.ustensil {
+  background-color: $ustensilesBgColor;
 }
 
 .nav-link {
@@ -111,7 +121,7 @@ option {
   }
   &--buttonTagSelected {
     display: flex;
-    background-color: $ingredientsBgColor;
+    // background-color: $ingredientsBgColor;
     margin: 0;
     width: auto;
     height: 37px;
@@ -120,6 +130,9 @@ option {
     color: #fff;
     justify-content: space-around;
     align-items: center;
+    // &__ingredient {
+    //   background-color: $ingredientsBgColor;
+    // }
     &_ingredientTag {
       background-color: $ingredientsBgColor;
     }
@@ -173,13 +186,13 @@ option {
       height: 70px;
     }
     &_appareil {
-      background-color: $appareilBgColor;
-      border-color: $appareilBgColor;
+      background-color: $appliancesBgColor;
+      border-color: $appliancesBgColor;
       height: 70px;
     }
     &_ustensiles {
-      background-color: $ustensiltesBgColor;
-      border-color: $ustensiltesBgColor;
+      background-color: $ustensilesBgColor;
+      border-color: $ustensilesBgColor;
       height: 70px;
     }
 
@@ -265,11 +278,11 @@ option {
         max-width: 800px;
       }
       &_appliance {
-        background-color: $appareilBgColor;
+        background-color: $appliancesBgColor;
         max-width: 400px;
       }
       &_ustensils {
-        background-color: $ustensiltesBgColor;
+        background-color: $ustensilesBgColor;
         max-width: 400px;
       }
     }

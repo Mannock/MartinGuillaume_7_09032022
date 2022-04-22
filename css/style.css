@@ -26,6 +26,18 @@ li {
   color: white;
 }
 
+.ingredients {
+  background-color: #3282f7;
+}
+
+.appliance {
+  background-color: #68d9a4;
+}
+
+.ustensil {
+  background-color: #ed6454;
+}
+
 .nav-link {
   color: #d04f4f;
   font-size: 36px;
@@ -117,7 +129,6 @@ option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #3282f7;
   margin: 0;
   width: auto;
   height: 37px;

@@ -19,6 +19,12 @@ export class Recipe {
     this.ustensils = ustensils;
   }
 
+
+  appliance() {
+
+         
+  }
+
   render() {
     let ingredientsList = "";
 
