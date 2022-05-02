@@ -13,13 +13,38 @@ console.log(ingredientDrop);
 let searchResult = document.getElementById("recipeContainer");
 
 let displayTags = [];
+
 console.log(recipeList.data);
 
-let recipeses = [];
+let allRecipes = [];
+
+// MAIN SEARCH
+
+function mainSearch(differentRecipes) {
+  let searchbar = document.getElementById("search");
+  console.log(searchbar);
+  console.log(differentRecipes);
+  console.log(differentRecipes[0].description);
+  searchbar.addEventListener("input", (e) => {
+    let search = e.target.value;
+    console.log(search);
+    console.log(differentRecipes[0].appliance);
+    if (search.length > 2) {
+      differentRecipes.forEach((recipe) => {
+        if (recipe.description.includes(search)) {
+          console.log(recipe);
+        }
+      });
+    }
+  });
+}
+
+//------------------------------------------------------------//
+
 createRecipe(recipeList.data);
 
 function createRecipe(data) {
-  recipeses = data.map((el) => {
+  allRecipes = data.map((el) => {
     return new Recipe(
       el.appliance,
       el.description,
@@ -34,7 +59,9 @@ function createRecipe(data) {
   orchestreur();
 }
 
-console.log(recipeses);
+mainSearch(allRecipes);
+
+console.log(allRecipes);
 // const orderData = data.sort((a, b) => {
 //   if (a.name.toLowerCase() < b.name.toLowerCase()) {
 //     return -1;
@@ -56,10 +83,10 @@ function displayRecipe(data) {
     .join("");
 }
 
-// displayRecipe(recipeses);
+// displayRecipe(allRecipes);
 
-// console.log(recipeses instanceof Recipe);
-// console.log(recipeses[0] instanceof Recipe);
+// console.log(allRecipes instanceof Recipe);
+// console.log(allRecipes[0] instanceof Recipe);
 
 // function ingredients(data) {
 //   data.forEach((el) => {
@@ -67,7 +94,7 @@ function displayRecipe(data) {
 //   });
 // }
 
-// ingredients(recipeses);
+// ingredients(allRecipes);
 
 // let ingredientsList = [];
 // let appliancesList = [];
@@ -76,7 +103,7 @@ function displayRecipe(data) {
 //On pourra récupérer dans les recettes triées
 
 // function getAllItems() {
-//   recipeses.forEach((recipe) => {
+//   allRecipes.forEach((recipe) => {
 //     recipe.ingredients.forEach((ingredient) => {
 //       ingredientsList.push(ingredient.ingredient);
 //     });
@@ -151,10 +178,17 @@ function addIngredientsToList(recipes) {
   });
   let uniqueIngredient = [...new Set(ingredients)];
 
+  let tags = [];
+  displayTags.forEach((tag) => {
+    tags.push(tag.innerHTML);
+  });
+
   uniqueIngredient.forEach((ingredient) => {
-    dropdown.innerHTML += `
-    <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
-    `;
+    if (!tags.includes(ingredient)) {
+      dropdown.innerHTML += `
+      <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
+      `;
+    }
   });
 }
 
@@ -168,10 +202,18 @@ function addAppliancesToList(recipes) {
   });
   let uniqueAppliance = [...new Set(appliances)];
 
+  let tags = [];
+  displayTags.forEach((tag) => {
+    tags.push(tag.innerHTML);
+  });
+
   uniqueAppliance.forEach((appliance) => {
-    dropdown.innerHTML += `
-    <li class="name-of-item appliance" tabindex="0">${appliance}</li>
-    `;
+    // console.log(appliance);
+    if (!tags.includes(appliance)) {
+      dropdown.innerHTML += `
+      <li class="name-of-item appliance" tabindex="0">${appliance}</li>
+      `;
+    }
   });
 }
 
@@ -187,10 +229,17 @@ function addUstensilsToList(recipes) {
   });
   let uniqueUstensil = [...new Set(ustensils)];
 
+  let tags = [];
+  displayTags.forEach((tag) => {
+    tags.push(tag.innerHTML);
+  });
+
   uniqueUstensil.forEach((ustensil) => {
-    dropdown.innerHTML += `
-    <li class="name-of-item ustensil " tabindex="0">${ustensil}</li>
-    `;
+    if (!tags.includes(ustensil)) {
+      dropdown.innerHTML += `
+      <li class="name-of-item ustensil " tabindex="0">${ustensil}</li>
+      `;
+    }
   });
 }
 
@@ -290,6 +339,15 @@ function addListenerToTags() {
     el.addEventListener("click", (e) => {
       if (!displayTags.some((e) => e.innerHTML === el.innerHTML)) {
         displayTags.push(el);
+        //remove el from arrayofitems?
+        // console.log(arrayOfItems.indexOf(el));
+        // const index = arrayOfItems.indexOf(el);
+        // console.log(index);
+        // console.log(arrayOfItems);
+        // if (index > -1) {
+        //   arrayOfItems.splice(index, 1);
+        // }
+        // console.log(arrayOfItems);
         orchestreur();
       }
     });
@@ -354,11 +412,11 @@ function applianceTriage(recipes) {
       selectedAppliances.push(tag.innerHTML);
     }
   });
-  console.log(selectedAppliances);
+  // console.log(selectedAppliances);
   let result = recipes.filter((recipe) =>
     recipe.appliance.includes(selectedAppliances)
   );
-  console.log(result);
+  // console.log(result);
 
   return result;
 
@@ -406,7 +464,7 @@ function ustensilTriage(recipes) {
       selectedUstensils.push(tag.innerHTML);
     }
   });
-  console.log(selectedUstensils);
+  // console.log(selectedUstensils);
   if (selectedUstensils.length == 0) {
     return recipes;
   }
@@ -429,9 +487,9 @@ function ustensilTriage(recipes) {
 
 function orchestreur() {
   //1 : 1e tri --> tableau des recettes ingrédients
-  // const tri1 = applianceTriage(recipeses);
-  const applianceTriageResult = applianceTriage(recipeses);
-  console.log(applianceTriageResult);
+  // const tri1 = applianceTriage(allRecipes);
+  const applianceTriageResult = applianceTriage(allRecipes);
+  // console.log(applianceTriageResult);
 
   // ingredientTriage(applianceTriageResult);
   // ustensilTriage(applianceTriageResult);
@@ -439,12 +497,12 @@ function orchestreur() {
   // const tri2 = ingredientTriage(tri1);
 
   const ustensilTriageResult = ustensilTriage(applianceTriageResult);
-  console.log(ustensilTriageResult);
+  // console.log(ustensilTriageResult);
 
   //3 : 3e tri (à partir du 2e tri)ustensiles
   // const tri3 = ustensilTriage(tri2);
   const ingredientTriageResult = ingredientTriage(ustensilTriageResult);
-  console.log(ingredientTriageResult);
+  // console.log(ingredientTriageResult);
 
   //4: affichage des recettes triées (à partir du 3e tri)
   displayRecipe(ingredientTriageResult);
@@ -461,8 +519,6 @@ function orchestreur() {
 
   displayTagsAbove();
   // addTagsToArray();
-
-  console.log(displayTags);
 
   //6: affichage des ustensiles   à partir du 3e tri
   // addIngredientsUstensils(tri3);

@@ -172,6 +172,7 @@ option {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  position: absolute;
   z-index: 9;
 }
 
@@ -360,6 +361,59 @@ option {
 
 #container-1_active {
   display: none;
+}
+
+@media (max-width: 990px) {
+  .menuNav--searchInput_glass {
+    bottom: 60px;
+  }
+  #recipes-container {
+    padding-top: 20px;
+  }
+  .recipe {
+    max-width: unset;
+    min-width: unset;
+    width: 100%;
+  }
+  .menuNav--searchInput {
+    margin-bottom: 10px;
+  }
+  #dropDownMenus-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    gap: 10px;
+  }
+  .dropDownMenus-container_1,
+  .dropDownMenus-container_2,
+  .dropDownMenus-container_3 {
+    width: 100%;
+  }
+  .dropDownMenus--input {
+    width: 100%;
+  }
+  .dropDownMenus--chevronDown {
+    color: #fff;
+    right: 30px;
+    top: unset;
+    bottom: 40px;
+  }
+  .dropDownMenus--input_active {
+    width: unset;
+    width: 100%;
+  }
+  .dropDownMenus--input_active_list li {
+    max-width: 160px;
+  }
+  .dropDownMenus--input_active_list_ing {
+    max-height: unset;
+  }
+  .dropDownMenus--input_active_appliance, .dropDownMenus--input_active_ustensils {
+    max-width: unset;
+    max-width: 800px;
+  }
 }
 
 /*!
