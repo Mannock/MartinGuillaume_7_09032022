@@ -20,70 +20,44 @@ let allRecipes = [];
 
 // MAIN SEARCH
 
-function mainSearch(differentRecipes) {
-  let searchbar = document.getElementById("search");
-  console.log(differentRecipes);
-  searchbar.addEventListener("input", (e) => {
-    let search = e.target.value;
-    console.log(search);
+// ------------LISTENER
+let searchbar = document.getElementById("search");
+searchbar.addEventListener("input", (e) => {
+  let search = e.target.value.toLowerCase();
+  console.log(search);
 
-    if (search.length < 2) {
-      // return differentRecipes;
-      displayRecipe(differentRecipes);
-    }
+  if (search.length > 2) {
+    // return differentRecipes;
+    // mainSearch(search);
+    orchestreur(search);
+  }
+});
 
-    // console.log(differentRecipes);
-    // differentRecipes.forEach((recipe) => {
-    //   console.log(recipe.ingredients);
-    //   recipe.ingredients.forEach((ingredient) => {
-    //     console.log(ingredient.ingredient);
-    //   });
-    // });
+function mainSearch(search) {
+  console.log(search);
+  if (search === undefined) {
+    return allRecipes;
+  }
 
-    // // --- TEST INGREDIENTS ----- //
-    // let ingredientsResult = [];
-    // differentRecipes.forEach((recipe) => {
-    //   recipe.ingredients.forEach((ingredient) => {
-    //     console.log(ingredient);
-    //     ingredient.filter(ingredient) =>
-    //       ingredient.ingredient.includes(search)
+  let searchResults = allRecipes.filter(
+    (recipe) =>
+      recipe.description.toLowerCase().includes(search) ||
+      recipe.name.toLowerCase().includes(search) ||
+      recipe.ingredients.some((ingredient) =>
+        ingredient.ingredient.toLowerCase().includes(search)
+      )
+  );
+  console.log(searchResults);
+  console.log(searchResults.length);
 
-    //     // ingredientsResult.push(ingredient.ingredient);
-    //   });
-    // });
-    // console.log(ingredientsResult);
+  return searchResults;
 
-    //------------------------------///
+  // displayRecipe(searchResults);
 
-    // const ingredients = differentRecipes.filter((recipe) =>
-    //   recipe.ingredients.some((ingredient) =>
-    //     ingredient.ingredient.includes(search)
-    //   )
-    // );
-    // console.log(ingredients);
-
-    let searchResults = differentRecipes.filter(
-      (recipe) =>
-        recipe.description.includes(search) ||
-        recipe.name.includes(search) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.includes(search)
-        )
-      // ||
-      // recipe.ingredients.forEach((ingredient) => {
-      //   ingredient.ingredient.includes(search);
-      // })
-      // recipe.ingredients.forEach((ingredient) => ingredient === search)
-    );
-    // return searchResults;
-    console.log(searchResults);
-    displayRecipe(searchResults);
-    return searchResults;
-    // else {
-    //   displayRecipe(allRecipes);
-    //   // orchestreur();
-    // }
-  });
+  // else {
+  //   displayRecipe(allRecipes);
+  //   // orchestreur();
+  // }
 }
 
 let tryout = mainSearch(allRecipes);
@@ -538,45 +512,61 @@ function ustensilTriage(recipes) {
   // return tableau trié
 }
 
-function orchestreur() {
-  const mainTriage = mainSearch(allRecipes);
-  console.log(mainTriage);
-  //1 : 1e tri --> tableau des recettes ingrédients
-  // const tri1 = applianceTriage(allRecipes);
-  const applianceTriageResult = applianceTriage(allRecipes);
-  // console.log(applianceTriageResult);
+function orchestreur(search) {
+  //
+  // if recipe.length ==0
 
-  // ingredientTriage(applianceTriageResult);
-  // ustensilTriage(applianceTriageResult);
-  //2 : 2e tri (à partir du 1e tri) appareils
-  // const tri2 = ingredientTriage(tri1);
+  const searchResults = mainSearch(search);
 
-  const ustensilTriageResult = ustensilTriage(applianceTriageResult);
-  // console.log(ustensilTriageResult);
+  if (searchResults.length == 0) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.style.display = "block";
+  } else {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.style.display = "none";
+    console.log("OKAY");
 
-  //3 : 3e tri (à partir du 2e tri)ustensiles
-  // const tri3 = ustensilTriage(tri2);
-  const ingredientTriageResult = ingredientTriage(ustensilTriageResult);
-  // console.log(ingredientTriageResult);
+    // orchestreur(searchResults);
 
-  //4: affichage des recettes triées (à partir du 3e tri)
-  displayRecipe(ingredientTriageResult);
+    // const mainTriage = mainSearch(allRecipes);
+    // console.log(mainTriage);
+    //1 : 1e tri --> tableau des recettes ingrédients
+    // const tri1 = applianceTriage(allRecipes);
+    const applianceTriageResult = applianceTriage(searchResults);
+    // console.log(applianceTriageResult);
 
-  //6: affichage des ingrédients à partir du 3e tri
-  // addIngredientsList(tri3);
+    // ingredientTriage(applianceTriageResult);
+    // ustensilTriage(applianceTriageResult);
+    //2 : 2e tri (à partir du 1e tri) appareils
+    // const tri2 = ingredientTriage(tri1);
 
-  //6: affichage des appareils   à partir du 3e tri
-  // addIngredientsAppareils(tri3);
+    const ustensilTriageResult = ustensilTriage(applianceTriageResult);
+    // console.log(ustensilTriageResult);
 
-  addIngredientsToList(ingredientTriageResult);
-  addAppliancesToList(ingredientTriageResult);
-  addUstensilsToList(ingredientTriageResult);
+    //3 : 3e tri (à partir du 2e tri)ustensiles
+    // const tri3 = ustensilTriage(tri2);
+    const ingredientTriageResult = ingredientTriage(ustensilTriageResult);
+    // console.log(ingredientTriageResult);
 
-  displayTagsAbove();
-  // addTagsToArray();
+    //4: affichage des recettes triées (à partir du 3e tri)
+    displayRecipe(ingredientTriageResult);
 
-  //6: affichage des ustensiles   à partir du 3e tri
-  // addIngredientsUstensils(tri3);
+    //6: affichage des ingrédients à partir du 3e tri
+    // addIngredientsList(tri3);
+
+    //6: affichage des appareils   à partir du 3e tri
+    // addIngredientsAppareils(tri3);
+
+    addIngredientsToList(ingredientTriageResult);
+    addAppliancesToList(ingredientTriageResult);
+    addUstensilsToList(ingredientTriageResult);
+
+    displayTagsAbove();
+    // addTagsToArray();
+
+    //6: affichage des ustensiles   à partir du 3e tri
+    // addIngredientsUstensils(tri3);
+  }
 }
 
 function closeTag() {

@@ -301,6 +301,12 @@ option {
   }
 }
 
+#error-message {
+  display: none;
+  padding-top: 20px;
+  font-size: 2rem;
+}
+
 .end-message {
   padding-right: 20px;
 }
