@@ -26,16 +26,17 @@ searchbar.addEventListener("input", (e) => {
   let search = e.target.value.toLowerCase();
   console.log(search);
 
-  if (search.length > 2) {
-    // return differentRecipes;
-    // mainSearch(search);
-    orchestreur(search);
-  }
+  orchestreur(search);
+  // if (search.length > 2) {
+  //   // return differentRecipes;
+  //   // mainSearch(search);
+  //   orchestreur(search);
+  // }
 });
 
 function mainSearch(search) {
-  console.log(search);
-  if (search === undefined) {
+  console.log(typeof search);
+  if (search === undefined || search.length < 3) {
     return allRecipes;
   }
 
@@ -51,13 +52,6 @@ function mainSearch(search) {
   console.log(searchResults.length);
 
   return searchResults;
-
-  // displayRecipe(searchResults);
-
-  // else {
-  //   displayRecipe(allRecipes);
-  //   // orchestreur();
-  // }
 }
 
 let tryout = mainSearch(allRecipes);
@@ -349,32 +343,12 @@ openDropdownAppliances();
 openDropdownUstensils();
 // -------------------------ADD TAGS UP-----------------------------------
 
-// let combinedArray = [
-//   ...uniqueIngredients,
-//   ...uniqueUstensils,
-//   ...uniqueAppliances,
-// ];
-
-// console.log(combinedArray);
-
-// addListenerToTags
-
 function addListenerToTags() {
   let arrayOfItems = [...document.querySelectorAll(".name-of-item")];
-  // console.log(arrayOfItems);
   arrayOfItems.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (!displayTags.some((e) => e.innerHTML === el.innerHTML)) {
         displayTags.push(el);
-        //remove el from arrayofitems?
-        // console.log(arrayOfItems.indexOf(el));
-        // const index = arrayOfItems.indexOf(el);
-        // console.log(index);
-        // console.log(arrayOfItems);
-        // if (index > -1) {
-        //   arrayOfItems.splice(index, 1);
-        // }
-        // console.log(arrayOfItems);
         orchestreur();
       }
     });
@@ -386,7 +360,6 @@ function displayTagsAbove() {
     ".menuNav--buttons-selected-container"
   );
 
-  // console.log(displayTags);
   tagsContainer.innerHTML = displayTags
     .map((el) => {
       // console.log(el.className);
@@ -439,11 +412,9 @@ function applianceTriage(recipes) {
       selectedAppliances.push(tag.innerHTML);
     }
   });
-  // console.log(selectedAppliances);
   let result = recipes.filter((recipe) =>
     recipe.appliance.includes(selectedAppliances)
   );
-  // console.log(result);
 
   return result;
 
@@ -515,17 +486,18 @@ function ustensilTriage(recipes) {
 function orchestreur(search) {
   //
   // if recipe.length ==0
-
+  console.log(search);
+  console.log(typeof search);
   const searchResults = mainSearch(search);
+  console.log(searchResults);
 
   if (searchResults.length == 0) {
     const errorMessage = document.getElementById("error-message");
     errorMessage.style.display = "block";
+    displayRecipe(searchResults);
   } else {
     const errorMessage = document.getElementById("error-message");
     errorMessage.style.display = "none";
-    console.log("OKAY");
-
     // orchestreur(searchResults);
 
     // const mainTriage = mainSearch(allRecipes);
