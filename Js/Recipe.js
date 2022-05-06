@@ -83,3 +83,12 @@ export class Recipe {
   //   });
   // }
 }
+
+export function displayRecipe(data) {
+  const recipeContainer = document.getElementById("recipeContainer");
+  recipeContainer.innerHTML = data
+    .map((rec) => {
+      return rec.render();
+    })
+    .join("");
+}
