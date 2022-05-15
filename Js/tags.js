@@ -1,7 +1,7 @@
 import { displayTags } from "./script.js";
 import { orchestreur } from "./script.js";
 
-export function closeTag() {
+export function closeTag(index) {
   let crosses = document.querySelectorAll(
     ".menuNav--buttonTagSelected__crossClose"
   );
@@ -12,11 +12,25 @@ export function closeTag() {
         if (displayTags[i].innerHTML === element) {
           displayTags.splice(i, 1);
         }
+        // juste récupérer l'index de l'élément sur lequel on clique
+        // en créant l'élément, lui passer l'index. Récupérer l'index au clic.
       }
       orchestreur();
     });
   });
 }
+
+// function closeTags
+let tagIngredients = [];
+let tagAppliances = [];
+let tagUstensils = [];
+
+function displayTagsIngredients() {}
+function closeTagsIngredients(index) {}
+function displayTagsAppliance() {}
+function closeTagsAppliance(index) {}
+function displayTagsUstensils() {}
+function closeTagsUstensils(index) {}
 
 export function displayTagsAbove() {
   let tagsContainer = document.querySelector(
@@ -24,11 +38,11 @@ export function displayTagsAbove() {
   );
 
   tagsContainer.innerHTML = displayTags
-    .map((el) => {
+    .map((el, index) => {
       // console.log(el.className);
       if (el.className.includes("ingredient")) {
         return `
-          <button class="menuNav--buttonTagSelected ingredients">
+          <button onclick="closeTag(${index})" class="menuNav--buttonTagSelected ingredients">
           <p>${el.innerHTML}</p>
           <img
           class="menuNav--buttonTagSelected__crossClose"

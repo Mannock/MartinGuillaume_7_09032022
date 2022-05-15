@@ -88,13 +88,20 @@ export function addIngredientsToList(recipes) {
     });
   });
   let uniqueIngredient = [...new Set(ingredients)];
+  console.log(uniqueIngredient);
 
   let tags = [];
   displayTags.forEach((tag) => {
     tags.push(tag.innerHTML);
   });
 
-  uniqueIngredient.forEach((ingredient) => {
+  displayIngredients(uniqueIngredient);
+  // console.log(uniqueIngredient);
+  // console.log(dropdown.innerHTML);
+}
+
+function displayIngredients(tableauIngredients) {
+  tableauIngredients.forEach((ingredient) => {
     if (!tags.includes(ingredient)) {
       dropdown.innerHTML += `
         <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>

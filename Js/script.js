@@ -17,6 +17,8 @@ import {
   addUstensilsToList,
 } from "./dropdowns.js";
 
+let search = "";
+
 const recipeList = await fetchRecipes();
 export let displayTags = [];
 export let allRecipes = [];
@@ -26,10 +28,13 @@ console.log(recipeList.data);
 // ------------LISTENER
 
 let searchbar = document.getElementById("search");
+
 searchbar.addEventListener("input", (e) => {
-  let search = e.target.value.toLowerCase();
   console.log(search);
-  orchestreur(search);
+  search = e.target.value.toLowerCase();
+  if (search.length > 2) {
+    orchestreur();
+  }
 });
 
 createRecipe(recipeList.data);
@@ -54,9 +59,11 @@ openDropdownIngredients();
 openDropdownAppliances();
 openDropdownUstensils();
 
-export function orchestreur(search) {
+export function orchestreur() {
   console.log(search);
-  console.log(typeof search);
+  // console.log(searchTest);
+
+  // console.log(typeof search);
   const searchResults = mainSearch(search);
   console.log(searchResults);
 
@@ -86,22 +93,35 @@ export function orchestreur(search) {
     addIngredientsToList(ingredientTriageResult);
     addAppliancesToList(ingredientTriageResult);
     addUstensilsToList(ingredientTriageResult);
+    searchThroughButton(ingredientTriageResult);
 
     displayTagsAbove();
   }
 }
 
-const searchInput = document.getElementById("ingredients-input");
-
 function searchThroughButton() {
+  const searchInput = document.getElementById("ingredients-input");
   searchInput.addEventListener("input", (e) => {
     const searchedElement = e.target.value.toLowerCase();
     console.log(searchedElement);
-    const filteredArray = uniqueIngredients.filter((el) =>
-      el.toLowerCase().includes(searchedElement)
-    );
+
+    // const filteredArray = uniqueIngredient.filter((el) =>
+    //   el.toLowerCase().includes(searchedElement)
+    // );
   });
 }
+
+// const searchInput = document.getElementById("ingredients-input");
+
+// function searchThroughButton() {
+//   searchInput.addEventListener("input", (e) => {
+//     const searchedElement = e.target.value.toLowerCase();
+//     console.log(searchedElement);
+//     const filteredArray = uniqueIngredients.filter((el) =>
+//       el.toLowerCase().includes(searchedElement)
+//     );
+//   });
+// }
 
 // searchThroughButton();
 
