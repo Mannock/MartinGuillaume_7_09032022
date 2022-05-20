@@ -1,6 +1,7 @@
 import { displayTags } from "./script.js";
 
 export function applianceTriage(recipes) {
+  console.log(displayTags);
   let selectedAppliances = [];
   displayTags.forEach((tag) => {
     if (tag.className.includes("appliance")) {

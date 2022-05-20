@@ -29,6 +29,10 @@ $dropdown-color: white;
 $dropdown-bg: #3282f7;
 $dropdown-padding-x: 0.5rem;
 
+.ingredientTag {
+  background-color: $ingredientsBgColor;
+}
+
 .card-body {
   scrollbar-width: thin;
 }
@@ -133,7 +137,7 @@ option {
     // &__ingredient {
     //   background-color: $ingredientsBgColor;
     // }
-    &_ingredientTag {
+    &ingredientTag {
       background-color: $ingredientsBgColor;
     }
     & p {

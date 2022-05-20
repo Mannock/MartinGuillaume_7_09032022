@@ -1,7 +1,12 @@
 import { fetchRecipes } from "./data.js";
 import { Recipe } from "./Recipe.js";
 import { mainSearch } from "./search.js";
-import { displayTagsAbove } from "./tags.js";
+import {
+  displayTagsAbove,
+  displayTagsIngredients,
+  addTaggedIngredientsToArray,
+  closeTag,
+} from "./tags.js";
 import { displayRecipe } from "./Recipe.js";
 import {
   applianceTriage,
@@ -12,6 +17,10 @@ import {
   openDropdownAppliances,
   openDropdownIngredients,
   openDropdownUstensils,
+  ingredients,
+  displayIngredients,
+  searchThroughButton,
+  uniqueIngredient,
   addIngredientsToList,
   addAppliancesToList,
   addUstensilsToList,
@@ -23,7 +32,7 @@ const recipeList = await fetchRecipes();
 export let displayTags = [];
 export let allRecipes = [];
 
-console.log(recipeList.data);
+// console.log(recipeList.data);
 
 // ------------LISTENER
 
@@ -60,12 +69,13 @@ openDropdownAppliances();
 openDropdownUstensils();
 
 export function orchestreur() {
-  console.log(search);
+  // console.log(search);
+  // console.log(ingredients);
   // console.log(searchTest);
 
   // console.log(typeof search);
   const searchResults = mainSearch(search);
-  console.log(searchResults);
+  // console.log(searchResults);
 
   if (searchResults.length == 0) {
     const noMatch = document.getElementById("error-message");
@@ -77,6 +87,8 @@ export function orchestreur() {
 
     //1 : 1e tri --> tableau des recettes ingrédients
     const applianceTriageResult = applianceTriage(searchResults);
+    // console.log(applianceTriageResult);
+    // console.log(typeof applianceTriageResult);
 
     //2 : 2e tri (à partir du 1e tri) appareils
 
@@ -91,24 +103,16 @@ export function orchestreur() {
 
     // 5: affichage des dropdowns à partir du 3e tri
     addIngredientsToList(ingredientTriageResult);
-    addAppliancesToList(ingredientTriageResult);
-    addUstensilsToList(ingredientTriageResult);
-    searchThroughButton(ingredientTriageResult);
-
-    displayTagsAbove();
+    addTaggedIngredientsToArray();
+    // addAppliancesToList(ingredientTriageResult);
+    // addUstensilsToList(ingredientTriageResult);
+    // searchThroughButton(ingredientTriageResult);
+    // console.log(uniqueIngredient);
+    // searchThroughButton();
+    // displayTagsIngredients();
+    // displayTagsAbove();
+    // displayTagsIngredients(ingredientTriageResult);
   }
-}
-
-function searchThroughButton() {
-  const searchInput = document.getElementById("ingredients-input");
-  searchInput.addEventListener("input", (e) => {
-    const searchedElement = e.target.value.toLowerCase();
-    console.log(searchedElement);
-
-    // const filteredArray = uniqueIngredient.filter((el) =>
-    //   el.toLowerCase().includes(searchedElement)
-    // );
-  });
 }
 
 // const searchInput = document.getElementById("ingredients-input");

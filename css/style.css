@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.ingredientTag {
+  background-color: #3282f7;
+}
+
 .card-body {
   scrollbar-width: thin;
 }
@@ -142,7 +146,7 @@ option {
           align-items: center;
 }
 
-.menuNav--buttonTagSelected_ingredientTag {
+.menuNav--buttonTagSelectedingredientTag {
   background-color: #3282f7;
 }
 

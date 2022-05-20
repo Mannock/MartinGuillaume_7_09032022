@@ -1,4 +1,5 @@
 import { displayTags } from "./script.js";
+import { displayTagsIngredients, addTaggedIngredientsToArray } from "./tags.js";
 
 // -------------------DROPDOWN MENUS
 
@@ -75,38 +76,56 @@ export function closeDropdownUstensils() {
 }
 
 // ------------------ADD ITEMS TO LIST
+let tags = [];
+let dropdown = document.getElementById("dropdown-ingredients");
+export let ingredients = [];
+export let uniqueIngredient = [];
 
 export function addIngredientsToList(recipes) {
-  let dropdown = document.getElementById("dropdown-ingredients");
   dropdown.innerHTML = "";
-
-  let ingredients = [];
-  // console.log(recipes);
+  ingredients = [];
   recipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       ingredients.push(ingredient.ingredient);
     });
   });
-  let uniqueIngredient = [...new Set(ingredients)];
-  console.log(uniqueIngredient);
-
-  let tags = [];
-  displayTags.forEach((tag) => {
-    tags.push(tag.innerHTML);
-  });
+  // console.log(ingredients);
+  uniqueIngredient = [...new Set(ingredients)];
+  // console.log(uniqueIngredient);
 
   displayIngredients(uniqueIngredient);
-  // console.log(uniqueIngredient);
-  // console.log(dropdown.innerHTML);
+  // displayTags.forEach((tag) => {
+  //   tags.push(tag.innerHTML);
+  // });
 }
 
-function displayIngredients(tableauIngredients) {
+export function displayIngredients(tableauIngredients) {
+  // console.log(tags);
   tableauIngredients.forEach((ingredient) => {
-    if (!tags.includes(ingredient)) {
+    // if (!tags.includes(ingredient))
+    {
       dropdown.innerHTML += `
         <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
         `;
     }
+  });
+
+  // document.querySelectorAll(".ingredient").forEach((el) =>
+  // el.addEventListener(
+  // "click"
+  // addTaggedIngredientsToArray(uniqueIngredient)
+  // addTaggedIngredientsToArray(uniqueIngredient);
+
+  // displayTagsIngredients(uniqueIngredient);
+  // )
+  // );
+}
+export function displayDropdownIngredients(dropdownSearch) {
+  dropdownSearch.forEach((ingredient) => {
+    dropdown.innerHTML = "";
+    dropdown.innerHTML += `
+          <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
+          `;
   });
 }
 
@@ -162,3 +181,18 @@ export function addUstensilsToList(recipes) {
 }
 
 //------------------
+
+export function searchThroughButton() {
+  console.log(ingredients);
+  const searchInput = document.getElementById("ingredients-input");
+  searchInput.addEventListener("input", (e) => {
+    const searchedElement = e.target.value.toLowerCase();
+    console.log(searchedElement);
+
+    const filteredArray = ingredients.filter((el) =>
+      el.toLowerCase().includes(searchedElement)
+    );
+    console.log(filteredArray);
+    displayDropdownIngredients(filteredArray);
+  });
+}
