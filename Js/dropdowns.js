@@ -77,104 +77,88 @@ export function closeDropdownUstensils() {
 
 // ------------------ADD ITEMS TO LIST
 let tags = [];
-let dropdown = document.getElementById("dropdown-ingredients");
+let dropdownIngredients = document.getElementById("dropdown-ingredients");
+let dropdownAppliances = document.getElementById("dropdown-appliances");
+let dropdownUstensils = document.getElementById("dropdown-ustensils");
+
 export let ingredients = [];
 export let uniqueIngredient = [];
+export let appliances = [];
+export let uniqueAppliance = [];
+export let ustensiles = [];
+export let uniqueUstensil = [];
 
 export function addIngredientsToList(recipes) {
-  dropdown.innerHTML = "";
+  dropdownIngredients.innerHTML = "";
   ingredients = [];
   recipes.forEach((recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       ingredients.push(ingredient.ingredient);
     });
   });
-  // console.log(ingredients);
   uniqueIngredient = [...new Set(ingredients)];
-  // console.log(uniqueIngredient);
-
   displayIngredients(uniqueIngredient);
-  // displayTags.forEach((tag) => {
-  //   tags.push(tag.innerHTML);
-  // });
 }
 
 export function displayIngredients(tableauIngredients) {
   // console.log(tags);
   tableauIngredients.forEach((ingredient) => {
-    // if (!tags.includes(ingredient))
     {
-      dropdown.innerHTML += `
+      dropdownIngredients.innerHTML += `
         <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
         `;
     }
   });
-
-  // document.querySelectorAll(".ingredient").forEach((el) =>
-  // el.addEventListener(
-  // "click"
-  // addTaggedIngredientsToArray(uniqueIngredient)
-  // addTaggedIngredientsToArray(uniqueIngredient);
-
-  // displayTagsIngredients(uniqueIngredient);
-  // )
-  // );
 }
+
 export function displayDropdownIngredients(dropdownSearch) {
   dropdownSearch.forEach((ingredient) => {
-    dropdown.innerHTML = "";
-    dropdown.innerHTML += `
+    dropdownIngredients.innerHTML = "";
+    dropdownIngredients.innerHTML += `
           <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
           `;
   });
 }
 
 export function addAppliancesToList(recipes) {
-  let dropdown = document.getElementById("dropdown-appliances");
-  dropdown.innerHTML = "";
-
-  let appliances = [];
+  dropdownAppliances.innerHTML = "";
+  appliances = [];
   recipes.forEach((recipe) => {
     appliances.push(recipe.appliance);
   });
-  let uniqueAppliance = [...new Set(appliances)];
+  uniqueAppliance = [...new Set(appliances)];
+  displayAppliances(uniqueAppliance);
+}
 
-  let tags = [];
-  displayTags.forEach((tag) => {
-    tags.push(tag.innerHTML);
-  });
-
-  uniqueAppliance.forEach((appliance) => {
-    // console.log(appliance);
-    if (!tags.includes(appliance)) {
-      dropdown.innerHTML += `
-        <li class="name-of-item appliance" tabindex="0">${appliance}</li>
+export function displayAppliances(tableauAppliances) {
+  // console.log(tags);
+  tableauAppliances.forEach((appliance) => {
+    {
+      dropdownAppliances.innerHTML += `
+        <li class="name-of-item appliance " tabindex="0">${appliance}</li>
         `;
     }
   });
 }
 
 export function addUstensilsToList(recipes) {
-  let dropdown = document.getElementById("dropdown-ustensils");
-  dropdown.innerHTML = "";
+  dropdownUstensils.innerHTML = "";
+  ustensiles = [];
 
-  let ustensils = [];
   recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
-      ustensils.push(ustensil);
+      ustensiles.push(ustensil);
     });
   });
-  let uniqueUstensil = [...new Set(ustensils)];
+  let uniqueUstensil = [...new Set(ustensiles)];
+  displayUstensils(uniqueUstensil);
+}
 
-  let tags = [];
-  displayTags.forEach((tag) => {
-    tags.push(tag.innerHTML);
-  });
-
-  uniqueUstensil.forEach((ustensil) => {
-    if (!tags.includes(ustensil)) {
-      dropdown.innerHTML += `
-        <li class="name-of-item ustensil " tabindex="0">${ustensil}</li>
+export function displayUstensils(tableauUstensils) {
+  tableauUstensils.forEach((ust) => {
+    {
+      dropdownUstensils.innerHTML += `
+        <li class="name-of-item ustensil " tabindex="0">${ust}</li>
         `;
     }
   });

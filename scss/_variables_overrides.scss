@@ -32,6 +32,12 @@ $dropdown-padding-x: 0.5rem;
 .ingredientTag {
   background-color: $ingredientsBgColor;
 }
+.applianceTag {
+  background-color: $appliancesBgColor;
+}
+.ustensilTag {
+  background-color: $ustensilesBgColor;
+}
 
 .card-body {
   scrollbar-width: thin;

@@ -2,10 +2,13 @@ import { fetchRecipes } from "./data.js";
 import { Recipe } from "./Recipe.js";
 import { mainSearch } from "./search.js";
 import {
-  displayTagsAbove,
+  tagsIngredients,
+  // displayTagsAbove,
   displayTagsIngredients,
   addTaggedIngredientsToArray,
-  closeTag,
+  addTaggedAppliancesToArray,
+  addTaggedUstensilsToArray,
+  // closeTag,
 } from "./tags.js";
 import { displayRecipe } from "./Recipe.js";
 import {
@@ -31,7 +34,7 @@ let search = "";
 const recipeList = await fetchRecipes();
 export let displayTags = [];
 export let allRecipes = [];
-
+console.log(mainSearch(search));
 // console.log(recipeList.data);
 
 // ------------LISTENER
@@ -42,6 +45,9 @@ searchbar.addEventListener("input", (e) => {
   console.log(search);
   search = e.target.value.toLowerCase();
   if (search.length > 2) {
+    orchestreur();
+  } else {
+    search = "";
     orchestreur();
   }
 });
@@ -87,8 +93,6 @@ export function orchestreur() {
 
     //1 : 1e tri --> tableau des recettes ingrédients
     const applianceTriageResult = applianceTriage(searchResults);
-    // console.log(applianceTriageResult);
-    // console.log(typeof applianceTriageResult);
 
     //2 : 2e tri (à partir du 1e tri) appareils
 
@@ -103,7 +107,15 @@ export function orchestreur() {
 
     // 5: affichage des dropdowns à partir du 3e tri
     addIngredientsToList(ingredientTriageResult);
+    addAppliancesToList(ingredientTriageResult);
+    addUstensilsToList(ingredientTriageResult);
+
     addTaggedIngredientsToArray();
+    addTaggedAppliancesToArray();
+    addTaggedUstensilsToArray();
+
+    //check si TaggedIngredients --> filter tagged Ingredients
+
     // addAppliancesToList(ingredientTriageResult);
     // addUstensilsToList(ingredientTriageResult);
     // searchThroughButton(ingredientTriageResult);

@@ -6,18 +6,19 @@ let tagsContainer = document.querySelector(
   ".menuNav--buttons-selected-container"
 );
 // function closeTags
-let tagsIngredients = [];
-let tagsAppliances = [];
-let tagsUstensils = [];
+export let tagsIngredients = [];
+export let tagsAppliances = [];
+export let tagsUstensils = [];
 
 export function addTaggedIngredientsToArray() {
   const ingredientsResult = document.querySelectorAll(".ingredient");
+  // console.log(ingredientsResult);
   ingredientsResult.forEach((ing) => {
     ing.addEventListener("click", (e) => {
       tagsIngredients.push(ing.innerHTML);
       console.log(tagsIngredients);
       displayTagsIngredients();
-      // closeTagsIngredients();
+      orchestreur();
     });
   });
 }
@@ -39,10 +40,10 @@ export function displayTagsIngredients() {
     })
     .join("");
   document.querySelectorAll(".ingredientTag").forEach((tag, index) => {
-    // console.log(tag);
     tag.addEventListener("click", (e) => closeTagsIngredients(index));
   });
 }
+
 function closeTagsIngredients(index) {
   console.log(index);
   tagsIngredients.splice(index, 1);
@@ -50,58 +51,135 @@ function closeTagsIngredients(index) {
   orchestreur();
 }
 
-function displayTagsAppliance() {}
-function closeTagsAppliance(index) {}
-function displayTagsUstensils() {}
-function closeTagsUstensils(index) {}
+export function addTaggedAppliancesToArray() {
+  const appliancesResult = document.querySelectorAll(".appliance");
+  appliancesResult.forEach((appliance) => {
+    appliance.addEventListener("click", (e) => {
+      tagsAppliances.push(appliance.innerHTML);
+      console.log(tagsAppliances);
+      displayTagsAppliances();
+      // closeTagsIngredients();
+      orchestreur();
+    });
+  });
+}
 
-export function displayTagsAbove() {
-  // console.log(uniqueIngredient);
-
-  tagsContainer.innerHTML = displayTags
+export function displayTagsAppliances() {
+  console.log(tagsAppliances);
+  tagsContainer.innerHTML += tagsAppliances
     .map((el, index) => {
-      // console.log(el.className);
-      if (el.className.includes("ingredient")) {
-        return `
-      <button onclick="closeTag(${index})" class="menuNav--buttonTagSelected ingredients">
-      <p>${el.innerHTML}</p>
-      <img
-      class="menuNav--buttonTagSelected__crossClose"
-      src="./img/cross-close.svg"
-      alt="supprimer le tags"
-      />
-      </button>
-      `;
-      } else if (el.className.includes("appliance")) {
-        return `
-      <button class="menuNav--buttonTagSelected appliance">
-      <p>${el.innerHTML}</p>
-      <img
-      class="menuNav--buttonTagSelected__crossClose"
-      src="./img/cross-close.svg"
-      alt="supprimer le tags"
-      />
-      </button>
-      `;
-      } else {
-        return `
-      <button class="menuNav--buttonTagSelected ustensil">
-      <p>${el.innerHTML}</p>
-      <img
-      class="menuNav--buttonTagSelected__crossClose"
-      src="./img/cross-close.svg"
-      alt="supprimer le tags"
-      />
-      </button>
-      `;
-      }
+      return `
+    <button class=" menuNav--buttonTagSelected applianceTag">
+    <p>${el}</p>
+    <img
+    class="menuNav--buttonTagSelected__crossClose"
+    src="./img/cross-close.svg"
+    alt="supprimer le tags"
+    />
+    </button>
+    `;
     })
     .join("");
-
-  closeTag();
-
-  addListenerToTags();
+  document.querySelectorAll(".applianceTag").forEach((tag, index) => {
+    tag.addEventListener("click", (e) => closeTagsAppliances(index));
+  });
 }
+
+function closeTagsAppliances(index) {
+  console.log(index);
+  tagsAppliances.splice(index, 1);
+  displayTagsAppliances();
+  orchestreur();
+}
+
+export function addTaggedUstensilsToArray() {
+  const ustensilsResult = document.querySelectorAll(".ustensil");
+  ustensilsResult.forEach((ust) => {
+    ust.addEventListener("click", (e) => {
+      tagsUstensils.push(ust.innerHTML);
+      console.log(tagsUstensils);
+      displayTagsUstensils();
+      // closeTagsIngredients();
+      orchestreur();
+    });
+  });
+}
+
+export function displayTagsUstensils() {
+  console.log(tagsUstensils);
+  tagsContainer.innerHTML += tagsUstensils
+    .map((el, index) => {
+      return `
+    <button class=" menuNav--buttonTagSelected ustensilTag">
+    <p>${el}</p>
+    <img
+    class="menuNav--buttonTagSelected__crossClose"
+    src="./img/cross-close.svg"
+    alt="supprimer le tags"
+    />
+    </button>
+    `;
+    })
+    .join("");
+  document.querySelectorAll(".ustensilTag").forEach((tag, index) => {
+    tag.addEventListener("click", (e) => closeTagsUstensils(index));
+  });
+}
+
+function closeTagsUstensils(index) {
+  console.log(index);
+  tagsUstensils.splice(index, 1);
+  displayTagsUstensils();
+  orchestreur();
+}
+
+// export function displayTagsAbove() {
+//   // console.log(uniqueIngredient);
+
+//   tagsContainer.innerHTML = displayTags
+//     .map((el, index) => {
+//       // console.log(el.className);
+//       if (el.className.includes("ingredient")) {
+//         return `
+//       <button onclick="closeTag(${index})" class="menuNav--buttonTagSelected ingredients">
+//       <p>${el.innerHTML}</p>
+//       <img
+//       class="menuNav--buttonTagSelected__crossClose"
+//       src="./img/cross-close.svg"
+//       alt="supprimer le tags"
+//       />
+//       </button>
+//       `;
+//       } else if (el.className.includes("appliance")) {
+//         return `
+//       <button class="menuNav--buttonTagSelected appliance">
+//       <p>${el.innerHTML}</p>
+//       <img
+//       class="menuNav--buttonTagSelected__crossClose"
+//       src="./img/cross-close.svg"
+//       alt="supprimer le tags"
+//       />
+//       </button>
+//       `;
+//       } else {
+//         return `
+//       <button class="menuNav--buttonTagSelected ustensil">
+//       <p>${el.innerHTML}</p>
+//       <img
+//       class="menuNav--buttonTagSelected__crossClose"
+//       src="./img/cross-close.svg"
+//       alt="supprimer le tags"
+//       />
+//       </button>
+//       `;
+//       }
+//     })
+//     .join("");
+
+//   closeTag();
+
+//   addListenerToTags();
+// }
 
 function addListenerToTags() {
   let arrayOfItems = [...document.querySelectorAll(".name-of-item")];
@@ -115,21 +193,21 @@ function addListenerToTags() {
   });
 }
 
-export function closeTag(index) {
-  let crosses = document.querySelectorAll(
-    ".menuNav--buttonTagSelected__crossClose"
-  );
-  crosses.forEach((cross) => {
-    cross.addEventListener("click", (e) => {
-      let element = cross.parentNode.firstChild.nextSibling.innerHTML;
-      for (var i = 0; i < displayTags.length; i++) {
-        if (displayTags[i].innerHTML === element) {
-          displayTags.splice(i, 1);
-        }
-        // juste récupérer l'index de l'élément sur lequel on clique
-        // en créant l'élément, lui passer l'index. Récupérer l'index au clic.
-      }
-      orchestreur();
-    });
-  });
-}
+// export function closeTag(index) {
+//   let crosses = document.querySelectorAll(
+//     ".menuNav--buttonTagSelected__crossClose"
+//   );
+//   crosses.forEach((cross) => {
+//     cross.addEventListener("click", (e) => {
+//       let element = cross.parentNode.firstChild.nextSibling.innerHTML;
+//       for (var i = 0; i < displayTags.length; i++) {
+//         if (displayTags[i].innerHTML === element) {
+//           displayTags.splice(i, 1);
+//         }
+//         // juste récupérer l'index de l'élément sur lequel on clique
+//         // en créant l'élément, lui passer l'index. Récupérer l'index au clic.
+//       }
+//       orchestreur();
+//     });
+//   });
+// }

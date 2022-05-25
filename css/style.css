@@ -3,6 +3,14 @@
   background-color: #3282f7;
 }
 
+.applianceTag {
+  background-color: #68d9a4;
+}
+
+.ustensilTag {
+  background-color: #ed6454;
+}
+
 .card-body {
   scrollbar-width: thin;
 }
