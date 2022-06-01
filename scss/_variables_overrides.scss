@@ -252,7 +252,7 @@ option {
           white-space: nowrap;
           text-overflow: clip;
           text-overflow: ellipsis;
-          text-overflow: "...";
+          // text-overflow: "...";
           cursor: pointer;
           &:hover {
             transform: scale(1.2) translate(5px);

@@ -309,7 +309,6 @@ option {
   white-space: nowrap;
   text-overflow: clip;
   text-overflow: ellipsis;
-  text-overflow: "...";
   cursor: pointer;
 }
 
