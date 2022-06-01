@@ -34,7 +34,7 @@ let search = "";
 const recipeList = await fetchRecipes();
 export let displayTags = [];
 export let allRecipes = [];
-console.log(mainSearch(search));
+// console.log(mainSearch(search));
 // console.log(recipeList.data);
 
 // ------------LISTENER
@@ -75,13 +75,7 @@ openDropdownAppliances();
 openDropdownUstensils();
 
 export function orchestreur() {
-  // console.log(search);
-  // console.log(ingredients);
-  // console.log(searchTest);
-
-  // console.log(typeof search);
   const searchResults = mainSearch(search);
-  // console.log(searchResults);
 
   if (searchResults.length == 0) {
     const noMatch = document.getElementById("error-message");
@@ -105,7 +99,7 @@ export function orchestreur() {
     //4: affichage des recettes triées (à partir du 3e tri)
     displayRecipe(ingredientTriageResult);
 
-    // 5: affichage des dropdowns à partir du 3e tri
+    // 5: affichage des dropdowns à partir du 3e tri // APPELLE function
     addIngredientsToList(ingredientTriageResult);
     addAppliancesToList(ingredientTriageResult);
     addUstensilsToList(ingredientTriageResult);
@@ -113,17 +107,6 @@ export function orchestreur() {
     addTaggedIngredientsToArray();
     addTaggedAppliancesToArray();
     addTaggedUstensilsToArray();
-
-    //check si TaggedIngredients --> filter tagged Ingredients
-
-    // addAppliancesToList(ingredientTriageResult);
-    // addUstensilsToList(ingredientTriageResult);
-    // searchThroughButton(ingredientTriageResult);
-    // console.log(uniqueIngredient);
-    // searchThroughButton();
-    // displayTagsIngredients();
-    // displayTagsAbove();
-    // displayTagsIngredients(ingredientTriageResult);
   }
 }
 
