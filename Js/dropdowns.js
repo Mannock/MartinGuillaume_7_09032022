@@ -1,4 +1,4 @@
-import { displayTags } from "./script.js";
+import { displayTags, orchestreur } from "./script.js";
 import { displayTagsIngredients, addTaggedIngredientsToArray } from "./tags.js";
 
 // -------------------DROPDOWN MENUS
@@ -101,7 +101,7 @@ export function addIngredientsToList(recipes) {
 }
 
 export function displayIngredients(tableauIngredients) {
-  // console.log(tags);
+  // dropdownIngredients.innerHTML = "";
   tableauIngredients.forEach((ingredient) => {
     {
       dropdownIngredients.innerHTML += `
@@ -112,8 +112,8 @@ export function displayIngredients(tableauIngredients) {
 }
 
 export function displayDropdownIngredients(dropdownSearch) {
+  dropdownIngredients.innerHTML = "";
   dropdownSearch.forEach((ingredient) => {
-    dropdownIngredients.innerHTML = "";
     dropdownIngredients.innerHTML += `
           <li class="name-of-item ingredient " tabindex="0">${ingredient}</li>
           `;
@@ -164,19 +164,19 @@ export function displayUstensils(tableauUstensils) {
   });
 }
 
-//------------------
+//------------------DROPDOWN SEARCH
 
 export function searchThroughButton() {
-  console.log(ingredients);
   const searchInput = document.getElementById("ingredients-input");
   searchInput.addEventListener("input", (e) => {
     const searchedElement = e.target.value.toLowerCase();
     console.log(searchedElement);
 
-    const filteredArray = ingredients.filter((el) =>
+    const filteredArray = uniqueIngredient.filter((el) =>
       el.toLowerCase().includes(searchedElement)
     );
     console.log(filteredArray);
     displayDropdownIngredients(filteredArray);
+    addTaggedIngredientsToArray();
   });
 }

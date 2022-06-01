@@ -12,7 +12,6 @@ export let tagsUstensils = [];
 
 export function addTaggedIngredientsToArray() {
   const ingredientsResult = document.querySelectorAll(".ingredient");
-  // console.log(ingredientsResult);
   ingredientsResult.forEach((ing) => {
     ing.addEventListener("click", (e) => {
       tagsIngredients.push(ing.innerHTML);
@@ -97,16 +96,13 @@ export function addTaggedUstensilsToArray() {
   ustensilsResult.forEach((ust) => {
     ust.addEventListener("click", (e) => {
       tagsUstensils.push(ust.innerHTML);
-      console.log(tagsUstensils);
       displayTagsUstensils();
-      // closeTagsIngredients();
       orchestreur();
     });
   });
 }
 
 export function displayTagsUstensils() {
-  console.log(tagsUstensils);
   tagsContainer.innerHTML += tagsUstensils
     .map((el, index) => {
       return `
@@ -133,54 +129,6 @@ function closeTagsUstensils(index) {
   orchestreur();
 }
 
-// export function displayTagsAbove() {
-//   // console.log(uniqueIngredient);
-
-//   tagsContainer.innerHTML = displayTags
-//     .map((el, index) => {
-//       // console.log(el.className);
-//       if (el.className.includes("ingredient")) {
-//         return `
-//       <button onclick="closeTag(${index})" class="menuNav--buttonTagSelected ingredients">
-//       <p>${el.innerHTML}</p>
-//       <img
-//       class="menuNav--buttonTagSelected__crossClose"
-//       src="./img/cross-close.svg"
-//       alt="supprimer le tags"
-//       />
-//       </button>
-//       `;
-//       } else if (el.className.includes("appliance")) {
-//         return `
-//       <button class="menuNav--buttonTagSelected appliance">
-//       <p>${el.innerHTML}</p>
-//       <img
-//       class="menuNav--buttonTagSelected__crossClose"
-//       src="./img/cross-close.svg"
-//       alt="supprimer le tags"
-//       />
-//       </button>
-//       `;
-//       } else {
-//         return `
-//       <button class="menuNav--buttonTagSelected ustensil">
-//       <p>${el.innerHTML}</p>
-//       <img
-//       class="menuNav--buttonTagSelected__crossClose"
-//       src="./img/cross-close.svg"
-//       alt="supprimer le tags"
-//       />
-//       </button>
-//       `;
-//       }
-//     })
-//     .join("");
-
-//   closeTag();
-
-//   addListenerToTags();
-// }
-
 function addListenerToTags() {
   let arrayOfItems = [...document.querySelectorAll(".name-of-item")];
   arrayOfItems.forEach((el) => {
@@ -192,22 +140,3 @@ function addListenerToTags() {
     });
   });
 }
-
-// export function closeTag(index) {
-//   let crosses = document.querySelectorAll(
-//     ".menuNav--buttonTagSelected__crossClose"
-//   );
-//   crosses.forEach((cross) => {
-//     cross.addEventListener("click", (e) => {
-//       let element = cross.parentNode.firstChild.nextSibling.innerHTML;
-//       for (var i = 0; i < displayTags.length; i++) {
-//         if (displayTags[i].innerHTML === element) {
-//           displayTags.splice(i, 1);
-//         }
-//         // juste récupérer l'index de l'élément sur lequel on clique
-//         // en créant l'élément, lui passer l'index. Récupérer l'index au clic.
-//       }
-//       orchestreur();
-//     });
-//   });
-// }

@@ -3,18 +3,14 @@ import { tagsIngredients, tagsAppliances, tagsUstensils } from "./tags.js";
 
 export function applianceTriage(recipes) {
   let selectedAppliances = [];
-  console.log(recipes);
 
   tagsAppliances.forEach((tag) => {
-    console.log(tag);
     selectedAppliances.push(tag);
-    console.log(selectedAppliances);
   });
 
   if (selectedAppliances.length == 0) {
     return recipes;
   }
-  console.log(recipes);
   let result = recipes.filter((recipe) => {
     const appliances = [];
     appliances.push(recipe.appliance);
@@ -33,8 +29,6 @@ export function applianceTriage(recipes) {
 
 export function ingredientTriage(recipes) {
   let selectedIngredients = [];
-
-  console.log(tagsIngredients);
 
   tagsIngredients.forEach((tag) => {
     console.log(tag);
@@ -64,8 +58,6 @@ export function ingredientTriage(recipes) {
 export function ustensilTriage(recipes) {
   let selectedUstensils = [];
 
-  console.log(tagsUstensils);
-
   tagsUstensils.forEach((tag) => {
     selectedUstensils.push(tag);
   });
@@ -87,19 +79,4 @@ export function ustensilTriage(recipes) {
   });
 
   return result;
-
-  // let result = recipes.filter((recipe) => {
-  //   const ustensils = [];
-  //   let okay = true;
-  //   selectedUstensils.forEach((ustensil) => {
-  //     okay = okay && ustensils.includes(ustensil);
-  //   });
-  //   return okay;
-  // });
-
-  // return result;
-
-  //prends les ustensiles sélectionnés
-  //filtre le tableau des recettes par rapport aux ustensiles selectionnés
-  // return tableau trié
 }

@@ -16,8 +16,6 @@ export function mainSearch(search) {
           ingredient.ingredient.toLowerCase().includes(search)
         )
     );
-    console.log(searchResults);
-    console.log(searchResults.length);
 
     return searchResults;
   }
