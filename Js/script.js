@@ -2,13 +2,9 @@ import { fetchRecipes } from "./data.js";
 import { Recipe } from "./Recipe.js";
 import { mainSearch } from "./search.js";
 import {
-  tagsIngredients,
-  // displayTagsAbove,
-  displayTagsIngredients,
   addTaggedIngredientsToArray,
   addTaggedAppliancesToArray,
   addTaggedUstensilsToArray,
-  // closeTag,
 } from "./tags.js";
 import { displayRecipe } from "./Recipe.js";
 import {
@@ -20,10 +16,7 @@ import {
   openDropdownAppliances,
   openDropdownIngredients,
   openDropdownUstensils,
-  ingredients,
-  displayIngredients,
   searchThroughButton,
-  uniqueIngredient,
   addIngredientsToList,
   addAppliancesToList,
   addUstensilsToList,
@@ -34,15 +27,12 @@ let search = "";
 const recipeList = await fetchRecipes();
 export let displayTags = [];
 export let allRecipes = [];
-// console.log(mainSearch(search));
-// console.log(recipeList.data);
 
 // ------------LISTENER
 
 let searchbar = document.getElementById("search");
 
 searchbar.addEventListener("input", (e) => {
-  console.log(search);
   search = e.target.value.toLowerCase();
   if (search.length > 2) {
     orchestreur();
@@ -73,6 +63,7 @@ function createRecipe(data) {
 openDropdownIngredients();
 openDropdownAppliances();
 openDropdownUstensils();
+searchThroughButton();
 
 export function orchestreur() {
   const searchResults = mainSearch(search);
@@ -109,19 +100,3 @@ export function orchestreur() {
     addTaggedUstensilsToArray();
   }
 }
-
-// const searchInput = document.getElementById("ingredients-input");
-
-// function searchThroughButton() {
-//   searchInput.addEventListener("input", (e) => {
-//     const searchedElement = e.target.value.toLowerCase();
-//     console.log(searchedElement);
-//     const filteredArray = uniqueIngredients.filter((el) =>
-//       el.toLowerCase().includes(searchedElement)
-//     );
-//   });
-// }
-
-// searchThroughButton();
-
-// addTagsToArray();
