@@ -82,6 +82,18 @@ option {
   color: white;
 }
 
+.ingredients-tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .menuNav--searchInput {
   width: 100%;
   background-color: #e7e7e7;
@@ -133,15 +145,15 @@ option {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px 0;
+  padding-top: 10px;
 }
 
 .menuNav--buttonTagSelected {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0;
+  margin-right: 0.7rem;
+  margin-bottom: 0.7rem;
   width: auto;
   height: 37px;
   border: none;

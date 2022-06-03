@@ -16,7 +16,9 @@ import {
   openDropdownAppliances,
   openDropdownIngredients,
   openDropdownUstensils,
-  searchThroughButton,
+  searchThroughIngredientButton,
+  searchThroughApplianceButton,
+  searchThroughUstensilButton,
   addIngredientsToList,
   addAppliancesToList,
   addUstensilsToList,
@@ -45,7 +47,7 @@ searchbar.addEventListener("input", (e) => {
 createRecipe(recipeList.data);
 
 function createRecipe(data) {
-  allRecipes = data.map((el) => {
+  const newRecipes = data.map((el) => {
     return new Recipe(
       el.appliance,
       el.description,
@@ -57,13 +59,26 @@ function createRecipe(data) {
       el.ustensils
     );
   });
+  allRecipes = [
+    ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+    // ...newRecipes,
+  ];
   orchestreur();
 }
 
 openDropdownIngredients();
 openDropdownAppliances();
 openDropdownUstensils();
-searchThroughButton();
+searchThroughIngredientButton();
+searchThroughApplianceButton();
+searchThroughUstensilButton();
 
 export function orchestreur() {
   const searchResults = mainSearch(search);

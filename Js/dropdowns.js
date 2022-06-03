@@ -1,5 +1,8 @@
-import { displayTags, orchestreur } from "./script.js";
-import { displayTagsIngredients, addTaggedIngredientsToArray } from "./tags.js";
+import {
+  addTaggedIngredientsToArray,
+  addTaggedAppliancesToArray,
+  addTaggedUstensilsToArray,
+} from "./tags.js";
 
 // -------------------DROPDOWN MENUS
 
@@ -76,7 +79,6 @@ export function closeDropdownUstensils() {
 }
 
 // ------------------ADD ITEMS TO LIST
-let tags = [];
 let dropdownIngredients = document.getElementById("dropdown-ingredients");
 let dropdownAppliances = document.getElementById("dropdown-appliances");
 let dropdownUstensils = document.getElementById("dropdown-ustensils");
@@ -131,13 +133,21 @@ export function addAppliancesToList(recipes) {
 }
 
 export function displayAppliances(tableauAppliances) {
-  // console.log(tags);
   tableauAppliances.forEach((appliance) => {
     {
       dropdownAppliances.innerHTML += `
         <li class="name-of-item appliance " tabindex="0">${appliance}</li>
         `;
     }
+  });
+}
+
+export function displayDropdownAppliances(dropdownSearch) {
+  dropdownAppliances.innerHTML = "";
+  dropdownSearch.forEach((appliance) => {
+    dropdownAppliances.innerHTML += `
+          <li class="name-of-item appliance " tabindex="0">${appliance}</li>
+          `;
   });
 }
 
@@ -150,7 +160,7 @@ export function addUstensilsToList(recipes) {
       ustensiles.push(ustensil);
     });
   });
-  let uniqueUstensil = [...new Set(ustensiles)];
+  uniqueUstensil = [...new Set(ustensiles)];
   displayUstensils(uniqueUstensil);
 }
 
@@ -164,19 +174,55 @@ export function displayUstensils(tableauUstensils) {
   });
 }
 
+export function displayDropdownUstensils(dropdownSearch) {
+  dropdownUstensils.innerHTML = "";
+  dropdownSearch.forEach((ustensil) => {
+    dropdownUstensils.innerHTML += `
+          <li class="name-of-item ustensil " tabindex="0">${ustensil}</li>
+          `;
+  });
+}
+
 //------------------DROPDOWN SEARCH
 
-export function searchThroughButton() {
+export function searchThroughIngredientButton() {
   const searchInput = document.getElementById("ingredients-input");
   searchInput.addEventListener("input", (e) => {
     const searchedElement = e.target.value.toLowerCase();
-    console.log(searchedElement);
 
     const filteredArray = uniqueIngredient.filter((el) =>
       el.toLowerCase().includes(searchedElement)
     );
-    console.log(filteredArray);
     displayDropdownIngredients(filteredArray);
     addTaggedIngredientsToArray();
   });
 }
+
+export function searchThroughApplianceButton() {
+  const searchInput = document.getElementById("appliance-input");
+  searchInput.addEventListener("input", (e) => {
+    const searchedElement = e.target.value.toLowerCase();
+
+    const filteredArray = uniqueAppliance.filter((el) =>
+      el.toLowerCase().includes(searchedElement)
+    );
+    displayDropdownAppliances(filteredArray);
+    addTaggedAppliancesToArray();
+  });
+}
+
+export function searchThroughUstensilButton() {
+  const searchInput = document.getElementById("ustensil-input");
+  searchInput.addEventListener("input", (e) => {
+    const searchedElement = e.target.value.toLowerCase();
+
+    const filteredArray = uniqueUstensil.filter((el) =>
+      el.toLowerCase().includes(searchedElement)
+    );
+    displayDropdownUstensils(filteredArray);
+    addTaggedUstensilsToArray();
+  });
+}
+
+// appliance-input
+// ustensil-input

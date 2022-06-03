@@ -1,4 +1,3 @@
-import { displayTags } from "./script.js";
 import { tagsIngredients, tagsAppliances, tagsUstensils } from "./tags.js";
 
 export function applianceTriage(recipes) {
@@ -31,9 +30,7 @@ export function ingredientTriage(recipes) {
   let selectedIngredients = [];
 
   tagsIngredients.forEach((tag) => {
-    console.log(tag);
     selectedIngredients.push(tag);
-    console.log(selectedIngredients);
   });
 
   if (selectedIngredients.length == 0) {
@@ -61,7 +58,6 @@ export function ustensilTriage(recipes) {
   tagsUstensils.forEach((tag) => {
     selectedUstensils.push(tag);
   });
-  // console.log(selectedUstensils);
   if (selectedUstensils.length == 0) {
     return recipes;
   }

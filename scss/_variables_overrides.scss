@@ -31,12 +31,15 @@ $dropdown-padding-x: 0.5rem;
 
 .ingredientTag {
   background-color: $ingredientsBgColor;
+  // gap: 10px;
 }
 .applianceTag {
   background-color: $appliancesBgColor;
+  // gap: 10px;
 }
 .ustensilTag {
   background-color: $ustensilesBgColor;
+  // gap: 10px;
 }
 
 .card-body {
@@ -96,6 +99,11 @@ option {
 }
 
 // -----------------------------------
+.ingredients-tag {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 
 .menuNav {
   &--searchInput {
@@ -126,13 +134,14 @@ option {
   &--buttons-selected-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 0;
+    // gap: 10px;
+    padding-top: 10px;
   }
   &--buttonTagSelected {
     display: flex;
     // background-color: $ingredientsBgColor;
-    margin: 0;
+    margin-right: 0.7rem;
+    margin-bottom: 0.7rem;
     width: auto;
     height: 37px;
     border: none;
@@ -143,6 +152,7 @@ option {
     // &__ingredient {
     //   background-color: $ingredientsBgColor;
     // }
+
     &ingredientTag {
       background-color: $ingredientsBgColor;
     }

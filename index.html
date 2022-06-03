@@ -45,9 +45,13 @@
       </div>
     </div>
 
+    <!-- Tags container -->
     <div class="container px-0">
       <div class="menuNav--buttons-selected-container">
-        <p></p>
+        <!-- <p></p> -->
+        <div class="menuNav--buttons-selected-container ingredients-tags"></div>
+        <div class="menuNav--buttons-selected-container appareils-tags"></div>
+        <div class="menuNav--buttons-selected-container ustensils-tags"></div>
       </div>
     </div>
 
@@ -128,6 +132,7 @@
           >
             <input
               autocomplete="off"
+              id="appliance-input"
               type="search"
               class="dropDownMenus--input_active_title"
               placeholder="Rechercher un appareil"
@@ -177,6 +182,7 @@
           >
             <input
               autocomplete="off"
+              id="ustensil-input"
               type="search"
               class="dropDownMenus--input_active_title"
               placeholder="Rechercher un ustensile"

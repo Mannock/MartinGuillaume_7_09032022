@@ -1,10 +1,13 @@
 import { displayTags } from "./script.js";
 import { orchestreur } from "./script.js";
-import { uniqueIngredient } from "./dropdowns.js";
 
 let tagsContainer = document.querySelector(
   ".menuNav--buttons-selected-container"
 );
+let ingredientsContainer = document.querySelector(".ingredients-tags");
+let appliancesContainer = document.querySelector(".appareils-tags");
+let ustensilssContainer = document.querySelector(".ustensils-tags");
+
 // function closeTags
 export let tagsIngredients = [];
 export let tagsAppliances = [];
@@ -15,7 +18,6 @@ export function addTaggedIngredientsToArray() {
   ingredientsResult.forEach((ing) => {
     ing.addEventListener("click", (e) => {
       tagsIngredients.push(ing.innerHTML);
-      console.log(tagsIngredients);
       displayTagsIngredients();
       orchestreur();
     });
@@ -23,8 +25,7 @@ export function addTaggedIngredientsToArray() {
 }
 
 export function displayTagsIngredients() {
-  console.log(tagsIngredients);
-  tagsContainer.innerHTML = tagsIngredients
+  ingredientsContainer.innerHTML = tagsIngredients
     .map((el, index) => {
       return `
     <button class=" menuNav--buttonTagSelected ingredientTag">
@@ -44,7 +45,6 @@ export function displayTagsIngredients() {
 }
 
 function closeTagsIngredients(index) {
-  console.log(index);
   tagsIngredients.splice(index, 1);
   displayTagsIngredients();
   orchestreur();
@@ -55,17 +55,14 @@ export function addTaggedAppliancesToArray() {
   appliancesResult.forEach((appliance) => {
     appliance.addEventListener("click", (e) => {
       tagsAppliances.push(appliance.innerHTML);
-      console.log(tagsAppliances);
       displayTagsAppliances();
-      // closeTagsIngredients();
       orchestreur();
     });
   });
 }
 
 export function displayTagsAppliances() {
-  console.log(tagsAppliances);
-  tagsContainer.innerHTML += tagsAppliances
+  appliancesContainer.innerHTML = tagsAppliances
     .map((el, index) => {
       return `
     <button class=" menuNav--buttonTagSelected applianceTag">
@@ -85,7 +82,6 @@ export function displayTagsAppliances() {
 }
 
 function closeTagsAppliances(index) {
-  console.log(index);
   tagsAppliances.splice(index, 1);
   displayTagsAppliances();
   orchestreur();
@@ -103,7 +99,7 @@ export function addTaggedUstensilsToArray() {
 }
 
 export function displayTagsUstensils() {
-  tagsContainer.innerHTML += tagsUstensils
+  ustensilssContainer.innerHTML = tagsUstensils
     .map((el, index) => {
       return `
     <button class=" menuNav--buttonTagSelected ustensilTag">
@@ -123,7 +119,6 @@ export function displayTagsUstensils() {
 }
 
 function closeTagsUstensils(index) {
-  console.log(index);
   tagsUstensils.splice(index, 1);
   displayTagsUstensils();
   orchestreur();

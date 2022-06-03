@@ -1,10 +1,8 @@
 // ---------------------  MAIN SEARCH
 
 import { allRecipes } from "./script.js";
-// import { tagsIngredients } from "./tags.js";
 
 export function mainSearch(search) {
-  // console.log(typeof search);
   if (search === undefined || search.length < 3) {
     return allRecipes;
   } else {
